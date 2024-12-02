@@ -332,24 +332,24 @@ GROUP BY user_id;
     -- inner join ( 用戶王小明的已使用堂數) as "COURSE_BOOKING"
     -- on "COURSE_BOOKING".user_id = "CREDIT_PURCHASE".user_id;
 
--- SELECT 
--- "CREDIT_PURCHASE".user_id ,
--- ("CREDIT_PURCHASE".total_credit - "COURSE_BOOKING".used_credit) as remaining_credit
--- from ( SELECT 
--- 	   cb.user_id, 
--- 	   sum(cp.purchased_credits) AS total_credit
--- 	   FROM "COURSE_BOOKING" cb 
--- 	   LEFT JOIN "CREDIT_PURCHASE" cp ON cb.user_id = cp.user_id	
--- 	   WHERE cb.user_id = ( SELECT id FROM "USER" WHERE name = '王小明' )
--- 	   GROUP BY cb.user_id ) as "CREDIT_PURCHASE"
--- inner join ( SELECT 
--- 			 user_id,
--- 			 count(status) AS used_credit
--- 			 FROM "COURSE_BOOKING" cb 
--- 			 WHERE user_id = ( SELECT id FROM "USER" WHERE name = '王小明' )
--- 			 AND status = '即將授課'
--- 			 GROUP BY user_id) as "COURSE_BOOKING"
--- on "COURSE_BOOKING".user_id = "CREDIT_PURCHASE".user_id;
+SELECT 
+"CREDIT_PURCHASE".user_id ,
+("CREDIT_PURCHASE".total_credit - "COURSE_BOOKING".used_credit) as remaining_credit
+from ( SELECT 
+	   cb.user_id, 
+	   sum(cp.purchased_credits) AS total_credit
+	   FROM "COURSE_BOOKING" cb 
+	   LEFT JOIN "CREDIT_PURCHASE" cp ON cb.user_id = cp.user_id	
+	   WHERE cb.user_id = ( SELECT id FROM "USER" WHERE name = '王小明' )
+	   GROUP BY cb.user_id ) as "CREDIT_PURCHASE"
+inner join ( SELECT 
+			 user_id,
+			 count(status) AS used_credit
+			 FROM "COURSE_BOOKING" cb 
+			 WHERE user_id = ( SELECT id FROM "USER" WHERE name = '王小明' )
+			 AND status = '即將授課'
+			 GROUP BY user_id) as "COURSE_BOOKING"
+on "COURSE_BOOKING".user_id = "CREDIT_PURCHASE".user_id;
 
 -- ████████  █████   █     ███  
 --   █ █   ██    █  █     █     
