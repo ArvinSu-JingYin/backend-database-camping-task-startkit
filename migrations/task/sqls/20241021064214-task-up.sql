@@ -275,16 +275,16 @@ AND course_id  = ( SELECT  c.id FROM "COURSE" c
     -- 2. 預約時間`booking_at` 設為2024-11-24 17:10:25
     -- 3. 狀態`status` 設定為即將授課
 
--- INSERT INTO "COURSE_BOOKING"(user_id, course_id, booking_at, status)
--- VALUES 
--- (
--- 	( SELECT id FROM "USER" WHERE name = '王小明' ),
--- 	( SELECT c.id FROM "COURSE" c
--- 	  LEFT JOIN "USER" u ON c.user_id = u.id 
--- 	  WHERE u.name = '李燕容'),
--- 	 '2024-11-24 17:10:25',
--- 	 '即將授課'
--- );
+INSERT INTO "COURSE_BOOKING"(user_id, course_id, booking_at, status)
+VALUES 
+(
+	( SELECT id FROM "USER" WHERE name = '王小明' ),
+	( SELECT c.id FROM "COURSE" c
+	  LEFT JOIN "USER" u ON c.user_id = u.id 
+	  WHERE u.name = '李燕容'),
+	 '2024-11-24 17:10:25',
+	 '即將授課'
+);
 
 -- 5-4. 查詢：取得王小明所有的預約紀錄，包含取消預約的紀錄
 
