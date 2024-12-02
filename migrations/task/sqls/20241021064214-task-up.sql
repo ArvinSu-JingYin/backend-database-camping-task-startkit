@@ -307,13 +307,13 @@ AND status = '即將授課';
 
 -- 5-6. 查詢：計算用戶王小明的購買堂數，顯示須包含以下欄位： user_id , total。 (需使用到 SUM 函式與 Group By)
 
--- SELECT 
--- cb.user_id, 
--- sum(cp.purchased_credits) AS total
--- FROM "COURSE_BOOKING" cb 
--- LEFT JOIN "CREDIT_PURCHASE" cp ON cb.user_id = cp.user_id	
--- WHERE cb.user_id = ( SELECT id FROM "USER" WHERE name = '王小明' )
--- GROUP BY cb.user_id;
+SELECT 
+cb.user_id, 
+sum(cp.purchased_credits) AS total
+FROM "COURSE_BOOKING" cb 
+LEFT JOIN "CREDIT_PURCHASE" cp ON cb.user_id = cp.user_id	
+WHERE cb.user_id = ( SELECT id FROM "USER" WHERE name = '王小明' )
+GROUP BY cb.user_id;
 
 -- 5-7. 查詢：計算用戶王小明的已使用堂數，顯示須包含以下欄位： user_id , total。 (需使用到 Count 函式與 Group By)
 
