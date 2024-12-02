@@ -403,4 +403,4 @@ WHERE purchase_at BETWEEN '2024-11-01' AND '2024-12-01'
 SELECT count(DISTINCT user_id) AS 預約會員人數
 FROM "COURSE_BOOKING" cb 
 WHERE created_at BETWEEN '2024-11-01' AND '2024-11-30'
-AND status = '即將授課'
+AND status = '即將授課';
